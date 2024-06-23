@@ -5,6 +5,9 @@ export const getAllRecipes = async () => {
 }
 
 export const createRecipe = async (recipe: any) => {
+  if(recipe.name?.length < 5) 
+    throw new Error('Não é possivel criar receitas com um nome menor que 5 caracterse')
+
   const data = await repository.create(recipe)
   return data
 }
