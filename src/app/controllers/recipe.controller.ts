@@ -8,3 +8,12 @@ export const showAllRecipes = async(HttpRequest: FastifyRequest, HttpResponse: F
     .send(data);
   return response;
 }
+
+export const createRecipe = async(HttpRequest: FastifyRequest, HttpResponse: FastifyReply) => {
+  const recipe = HttpRequest.body;
+  const data = await recipeUseCase.createRecipe(recipe)
+  const response = HttpResponse
+    .code(200)
+    .send(data);
+  return response;
+}
