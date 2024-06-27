@@ -50,5 +50,51 @@ describe('Recipe use case test suite', () => {
     expect(recipeRepository.create).toHaveBeenCalledTimes(0)
   })
 
-  it('Should ')
+  it('Should return a recipe with valid params', async () => {
+    (recipeRepository.create as jest.Mock).mockReturnValue({
+      name: "Shakshuka",
+      ingredients: [
+        "4 ovos",
+        "1 lata de tomate pelado em cubos (400 g)",
+        "½ pimentão vermelho",
+        "½ cebola",
+        "1 dente de alho",
+        "1 colher (sopa) de azeite",
+        "½ colher (chá) de orégano seco",
+        "1 pitada de pimenta calabresa seca",
+        "sal a gosto"
+      ],
+      id: "666f304dfd74431876df9250"
+    })
+    const result = await recipeUseCase.createRecipe({
+      name: "Shakshuka",
+      ingredients: [
+        "4 ovos",
+        "1 lata de tomate pelado em cubos (400 g)",
+        "½ pimentão vermelho",
+        "½ cebola",
+        "1 dente de alho",
+        "1 colher (sopa) de azeite",
+        "½ colher (chá) de orégano seco",
+        "1 pitada de pimenta calabresa seca",
+        "sal a gosto"
+      ]
+    })
+
+    expect({  
+      name: "Shakshuka",
+      ingredients: [
+        "4 ovos",
+        "1 lata de tomate pelado em cubos (400 g)",
+        "½ pimentão vermelho",
+        "½ cebola",
+        "1 dente de alho",
+        "1 colher (sopa) de azeite",
+        "½ colher (chá) de orégano seco",
+        "1 pitada de pimenta calabresa seca",
+        "sal a gosto"
+      ],
+      id: "666f304dfd74431876df9250"
+    }).toEqual(result)
+  })
 })
